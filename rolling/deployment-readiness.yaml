@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rolling
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        run: rolling
+    spec:
+      containers:
+      - image: app:v1
+        name: rolling
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          successThreshold: 1
+          timeoutSeconds: 1

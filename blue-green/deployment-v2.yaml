@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-v2
+spec:
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        run: app-v2
+    spec:
+      containers:
+      - image: app:v2
+        name: app-v2
+        ports:
+        - containerPort: 8080
