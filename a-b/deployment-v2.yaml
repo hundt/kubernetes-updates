@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: app-v2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: app-v2
+        service: app
+    spec:
+      containers:
+      - image: app:v2
+        name: app-v2
+        ports:
+        - containerPort: 8080
+        env:
+        -
+          name: BACKEND_URL
+          value: http://localhost:8081/
+      - image: backend:v2
+        name: rolling-backend
