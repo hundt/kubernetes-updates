@@ -29,7 +29,7 @@ kubectl set image deployment/rolling rolling=app:v2
 ```
 
 ### A/B
-To start the service:
+To start the service with 80% v1 and 20% v2:
 ```
 kubectl create -f a-b/deployment-v1.yaml
 kubectl create -f a-b/deployment-v2.yaml
@@ -37,7 +37,7 @@ kubectl create -f a-b/service.yaml
 ```
 Use `a-b/monitor.sh` to verify that it is running.
 
-To switch over to v2:
+To switch over to 100% v2:
 ```
 kubectl edit deploy app-v2  # change to 4 replicas
 kubectl edit deploy app-v1  # remove service:app from selector and template metadata
