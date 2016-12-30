@@ -14,6 +14,10 @@ spec:
         name: rolling
         ports:
         - containerPort: 8080
+        env:
+        -
+          name: BACKEND_URL
+          value: http://localhost:8081/
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -23,3 +27,5 @@ spec:
           initialDelaySeconds: 3
           successThreshold: 1
           timeoutSeconds: 1
+      - image: backend:v1
+        name: rolling-backend

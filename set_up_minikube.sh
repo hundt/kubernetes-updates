@@ -7,7 +7,10 @@
 # Build images for our app (inside minikube's Docker env)
 (
 	eval $(./minikube docker-env)
-	for v in 1 2 3 4; do
+	for v in 1 2 3 4 5 6 7; do
 		docker build -t app:v$v app/v$v
+	done
+	for v in 1 2; do
+		docker build -t backend:v$v backend/v$v
 	done
 )

@@ -14,3 +14,9 @@ spec:
         name: app-v1
         ports:
         - containerPort: 8080
+        env:
+        -
+          name: BACKEND_URL
+          value: http://localhost:8081/
+      - image: backend:v1
+        name: rolling-backend
